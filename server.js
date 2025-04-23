@@ -1,5 +1,6 @@
 
 const express = require("express");
+
 const cors = require("cors");
 
 const connectDB = require("./database");
@@ -60,18 +61,18 @@ app.post('/add-course',authMiddleware,authorizeRole('Counsellor'),upload.single(
 
   app.get('/all-course',async(req,res)=>{
     try {
-        const{search,duration,category}=req.query;
-        let filters={}
-        if(search){
-            filters.title={$regex:search,$options:"i"};
-        }
-        if(duration){
-            filters.duration=duration;
-        }
-        if(category){
-            filters.category={$regex:category,$options:"i"};
-        }
-        const course = await Course.find(filters);
+        // const{search,duration,category}=req.query;
+        // let filters={}
+        // if(search){
+        //     filters.title={$regex:search,$options:"i"};
+        // }
+        // if(duration){
+        //     filters.duration=duration;
+        // }
+        // if(category){
+        //     filters.category={$regex:category,$options:"i"};
+        // }
+        const course = await Course.find();
           res.json(course)
     } catch (error) {
         req.status(502).json({message:"error in getting course",error});
